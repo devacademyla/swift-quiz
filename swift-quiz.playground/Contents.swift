@@ -26,11 +26,11 @@ class Choice {
 }
 
 enum Conditions {
-    case ForWomen
-    case ForMen
-    case ForSexualActive
-    case ForCheckedPeople
-    case ForLessThreeMonthsChekedPeople
-    case ForPeopleWithSTD
-    case ForPeopleWithSymptoms
+    case Women
+    case Men
+    case SexualActive
+    case CheckedPeople
+    case LessThreeMonthsChekedPeople
+    case PeopleWithSTD
+    case PeopleWithSymptoms
 }
