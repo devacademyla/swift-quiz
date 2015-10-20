@@ -14,7 +14,8 @@ class Quiz {
 
 class Question {
     let text:String = ""
-    let typo:String = "" // According to the type, score will add or will multiply
+    let conditions:[Conditions] = [] // Use this to show/hide question to user
+    let multiply:Bool = false // According to this, score will just add or will multiply
     
 }
 
@@ -22,4 +23,14 @@ class Choice {
     let text:String = ""
     let score:Float = 0.0
     
+}
+
+enum Conditions {
+    case ForWomen
+    case ForMen
+    case ForSexualActive
+    case ForCheckedPeople
+    case ForLessThreeMonthsChekedPeople
+    case ForPeopleWithSTD
+    case ForPeopleWithSymptoms
 }
