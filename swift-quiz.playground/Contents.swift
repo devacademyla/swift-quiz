@@ -1,5 +1,7 @@
 //: Playground - noun: a place where people can play
 
+import Foundation
+
 class Quiz {
     let questions:[Question] = []
     
@@ -7,7 +9,7 @@ class Quiz {
         // Create Question objects and add to arrQuestions
     }
     
-    func evaluate(arrAnwsers: [AnyObject]) {
+    func evaluate(arrAnswers: [AnyObject]) {
         // Calc quiz result and return it
     }
 }
@@ -16,7 +18,7 @@ class Question {
     let text:String = ""
     let conditions:[Conditions] = [] // Use this to show/hide question to user
     let multiply:Bool = false // According to this, score will just add or will multiply
-    let anwsers:[Answer] = []
+    let answers:[Answer] = []
     
     func addAnwser(choices: [AnyObject]) {
         // Create choice and add to arrChoices
@@ -40,15 +42,23 @@ enum Conditions {
     case PeopleWithSymptoms
 }
 
-
-
-
-
-
-
-
-
-
+let data: [[String: AnyObject]] = [
+    [
+        "text": "Cuál es tu género?",
+        "answers": ["Masculino", "Femenino"],
+        "scores": [0, 0]
+    ],
+    [
+        "text": "Cuántos años tienes?",
+        "answers": ["Less than 25", "Equal or more than 25"],
+        "scores": [0.25, 0.15]
+    ],
+    [
+        "text": "Cuál es tu estado civil?",
+        "answers": ["Less than 25", "Equal or more than 25"],
+        "scores": [0.25, 0.15]
+    ],
+]
 
 
 
