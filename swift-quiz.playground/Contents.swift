@@ -9,26 +9,34 @@ class Quiz {
         // Create Question objects and add to arrQuestions
     }
     
-    func evaluate(arrAnswers: [AnyObject]) {
-        // Calc quiz result and return it
+    func evaluate(userAnswers: [AnyObject]) {
+        // Calculate quiz result and return it
     }
 }
 
 class Question {
-    let text:String = ""
-    let conditions:[Conditions] = [] // Use this to show/hide question to user
-    let multiply:Bool = false // According to this, score will just add or will multiply
-    let answers:[Answer] = []
+    var text:String = ""
+    var conditions:[Conditions] = [] // Use this to show/hide question to user
+    var multiply:Bool = false // According to this, score will just add or will multiply
+    var answers:[Answer] = []
     
-    func addAnwser(choices: [AnyObject]) {
-        // Create choice and add to arrChoices
+    init(text:String, conditions:[Conditions], multiply:Bool, answers:[Answer]) {
+        self.text = text
+        self.conditions = conditions
+        self.multiply = multiply
+        self.answers = answers
     }
     
 }
 
 class Answer {
-    let text:String = ""
-    let score:Float = 0.0
+    var text:String = ""
+    var score:Float = 0.0
+    
+    init(text:String, score:Float) {
+        self.text = text
+        self.score = score
+    }
     
 }
 
@@ -42,7 +50,9 @@ enum Conditions {
     case PeopleWithSymptoms
 }
 
-let data: [[String: AnyObject]] = [
+// Hardcoded questions and answers
+
+let data1: [[String: AnyObject]] = [
     [
         "text": "Cuál es tu género?",
         "answers": ["Masculino", "Femenino"],
@@ -55,10 +65,28 @@ let data: [[String: AnyObject]] = [
     ],
     [
         "text": "Cuál es tu estado civil?",
-        "answers": ["Less than 25", "Equal or more than 25"],
-        "scores": [0.25, 0.15]
+        "answers": ["Soltero", "Comprometido", "Casado"],
+        "scores": [0.25, 1, 1]
     ],
 ]
+
+// Hardcoded user answers (index of answers)
+
+let userAnswers = [0, 1, 2]
+
+// Simulated quiz result
+
+let data = data1 as NSArray
+data[0]["text"]
+
+
+let x = data[0]["answers"] as! NSArray
+let y = data[0]["scores"] as! NSArray
+let xText = x[1] as! String
+let yScore = y[1] as! Float
+
+let answer1 = Answer(text: xText, score: yScore)
+
 
 
 
