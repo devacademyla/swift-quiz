@@ -4,13 +4,18 @@ import Foundation
 
 class Quiz {
     var questions:[Question] = []
+    var score: Float = 0.0
     
-    func addQuestions(questions: [AnyObject]) {
-        // Create Question objects and add to arrQuestions
-    }
-    
-    func evaluate(userAnswers: [AnyObject]) {
-        // Calculate quiz result and return it
+    func evaluate(userAnswers: [Int]) -> Float {
+        for index in 0...questions.count-1 {
+            let question = questions[index] as Question
+            let userAnswer =  userAnswers[index]
+            
+            let answer = question.answers[userAnswer] as Answer
+            score += answer.score
+        }
+        
+        return Float(self.score)
     }
     
     init(questions: [Question]) {
@@ -76,7 +81,7 @@ let rawData: [[String: AnyObject]] = [
 
 // Hardcoded user answers (index of answers)
 
-let userAnswers = [0, 1, 2]
+let userAnswers: [Int] = [0, 1, 2]
 
 // Simulated quiz result
 
@@ -101,8 +106,7 @@ for quizQuestion in data {
 
 let newQuiz = Quiz(questions: questionsForQuiz)
 
-newQuiz
-
+newQuiz.evaluate([0,0,0])
 
 
 
