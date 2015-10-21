@@ -3,7 +3,7 @@
 import Foundation
 
 class Quiz {
-    let questions:[Question] = []
+    var questions:[Question] = []
     
     func addQuestions(questions: [AnyObject]) {
         // Create Question objects and add to arrQuestions
@@ -11,6 +11,10 @@ class Quiz {
     
     func evaluate(userAnswers: [AnyObject]) {
         // Calculate quiz result and return it
+    }
+    
+    init(questions: [Question]) {
+        self.questions = questions
     }
 }
 
@@ -52,7 +56,7 @@ enum Conditions {
 
 // Hardcoded questions and answers
 
-let data1: [[String: AnyObject]] = [
+let rawData: [[String: AnyObject]] = [
     [
         "text": "Cuál es tu género?",
         "answers": ["Masculino", "Femenino"],
@@ -76,16 +80,30 @@ let userAnswers = [0, 1, 2]
 
 // Simulated quiz result
 
-let data = data1 as NSArray
-data[0]["text"]
+let data = rawData as NSArray
+
+var questionsForQuiz: [Question] = []
+
+for quizQuestion in data {
+    let x = quizQuestion["answers"] as! NSArray
+    let y = quizQuestion["scores"] as! NSArray
+    
+    var answersForQuestion: [Answer] = []
+    
+    for index in 0...x.count-1 {
+        let answer = Answer(text: x[index] as! String, score: y[index] as! Float)
+        answersForQuestion.append(answer)
+    }
+    
+    let question = Question(text: quizQuestion["text"] as! String, conditions: [], multiply: false, answers: answersForQuestion)
+    questionsForQuiz.append(question)
+}
+
+let newQuiz = Quiz(questions: questionsForQuiz)
+
+newQuiz
 
 
-let x = data[0]["answers"] as! NSArray
-let y = data[0]["scores"] as! NSArray
-let xText = x[1] as! String
-let yScore = y[1] as! Float
-
-let answer1 = Answer(text: xText, score: yScore)
 
 
 
